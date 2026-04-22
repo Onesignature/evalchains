@@ -31,46 +31,94 @@ async function getToken() {
   return access_token;
 }
 
-async function fetchAllEvals(token, login) {
+async function fetchAllPages(token, path, label) {
   const all = [];
   for (let page = 1; ; page++) {
-    const url = `${API}/v2/users/${login}/scale_teams/as_corrected?page[size]=${PAGE_SIZE}&page[number]=${page}`;
+    const url = `${API}${path}?page[size]=${PAGE_SIZE}&page[number]=${page}`;
     const r = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
-    if (!r.ok) throw new Error(`scale_teams p${page} ${r.status}: ${await r.text()}`);
+    if (!r.ok) throw new Error(`${label} p${page} ${r.status}: ${await r.text()}`);
     const batch = await r.json();
     all.push(...batch);
-    console.error(`  page ${page}: +${batch.length} (total ${all.length})`);
+    console.error(`  [${label}] page ${page}: +${batch.length} (total ${all.length})`);
     if (batch.length < PAGE_SIZE) break;
     await new Promise((res) => setTimeout(res, PAGE_DELAY_MS));
   }
   return all;
 }
 
-function summarize(evals, login) {
-  const counts = new Map();
-  for (const e of evals) {
-    const corrector = e.corrector?.login ?? "(unknown)";
-    counts.set(corrector, (counts.get(corrector) ?? 0) + 1);
-  }
-  const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1]);
-  const total = evals.length;
-  const unique = counts.size;
-  const diversity = total > 0 ? unique / total : 0;
-  const repeatRate = 1 - diversity;
+function buildPairs(received, given, selfLogin) {
+  const recvCount = new Map();
+  const givenCount = new Map();
 
-  console.log(`\n== ${login} — evaluation summary ==`);
-  console.log(`Total evaluations received : ${total}`);
-  console.log(`Unique evaluators          : ${unique}`);
-  console.log(`Diversity (unique/total)   : ${diversity.toFixed(3)}`);
-  console.log(`Repeat-evaluator score     : ${repeatRate.toFixed(3)}`);
-  console.log(`\nTop evaluators:`);
-  for (const [corrector, count] of sorted.slice(0, 15)) {
-    const pct = ((count / total) * 100).toFixed(1).padStart(5);
-    console.log(`  ${corrector.padEnd(20)} ${String(count).padStart(3)}  (${pct}%)`);
+  for (const e of received) {
+    const c = e.corrector?.login;
+    if (c && c !== selfLogin) recvCount.set(c, (recvCount.get(c) ?? 0) + 1);
+  }
+  for (const e of given) {
+    for (const t of e.correcteds ?? []) {
+      const peer = t.login;
+      if (peer && peer !== selfLogin) givenCount.set(peer, (givenCount.get(peer) ?? 0) + 1);
+    }
+  }
+
+  const peers = new Set([...recvCount.keys(), ...givenCount.keys()]);
+  const pairs = [];
+  for (const peer of peers) {
+    const r = recvCount.get(peer) ?? 0;
+    const g = givenCount.get(peer) ?? 0;
+    pairs.push({ peer, received: r, given: g, reciprocal: Math.min(r, g), total: r + g });
+  }
+  return pairs;
+}
+
+function printTable(rows, title) {
+  if (rows.length === 0) {
+    console.log(`\n${title}: (none)`);
+    return;
+  }
+  console.log(`\n${title}`);
+  console.log(`  ${"peer".padEnd(18)} ${"recv".padStart(5)} ${"given".padStart(6)} ${"recip".padStart(6)} ${"total".padStart(6)}`);
+  console.log(`  ${"-".repeat(18)} ${"-".repeat(5)} ${"-".repeat(6)} ${"-".repeat(6)} ${"-".repeat(6)}`);
+  for (const p of rows) {
+    console.log(
+      `  ${p.peer.padEnd(18)} ${String(p.received).padStart(5)} ${String(p.given).padStart(6)} ${String(p.reciprocal).padStart(6)} ${String(p.total).padStart(6)}`,
+    );
+  }
+}
+
+function summarize(pairs, received, given, selfLogin) {
+  const totalRecv = received.length;
+  const totalGiven = given.reduce((n, e) => n + (e.correcteds?.length ?? 0), 0);
+  const uniqueRecv = new Set(pairs.filter((p) => p.received > 0).map((p) => p.peer)).size;
+  const uniqueGiven = new Set(pairs.filter((p) => p.given > 0).map((p) => p.peer)).size;
+  const overlap = pairs.filter((p) => p.received > 0 && p.given > 0).length;
+
+  console.log(`\n== ${selfLogin} — evaluation map ==`);
+  console.log(`Received : ${totalRecv} evals from ${uniqueRecv} unique peers`);
+  console.log(`Given    : ${totalGiven} evals to ${uniqueGiven} unique peers`);
+  console.log(`Overlap  : ${overlap} peers evaluated in both directions`);
+
+  const reciprocal = pairs
+    .filter((p) => p.reciprocal > 0)
+    .sort((a, b) => b.reciprocal - a.reciprocal || b.total - a.total);
+  printTable(reciprocal.slice(0, 15), "Top reciprocal pairs (both directions, sorted by min count):");
+
+  const tight = reciprocal.filter((p) => p.reciprocal >= 2);
+  if (tight.length > 0) {
+    console.log(
+      `\n${tight.length} peer${tight.length === 1 ? "" : "s"} with reciprocal >= 2 ` +
+        `(both evaluated each other at least twice). These are the edges worth visualizing.`,
+    );
+  } else {
+    console.log(`\nNo peers with reciprocal >= 2. Clean profile.`);
   }
 }
 
 const token = await getToken();
-console.error(`token ok, fetching evals for ${login}...`);
-const evals = await fetchAllEvals(token, login);
-summarize(evals, login);
+console.error(`token ok. fetching evaluation history for ${login}...`);
+const [received, given] = await Promise.all([
+  fetchAllPages(token, `/v2/users/${login}/scale_teams/as_corrected`, "received"),
+  fetchAllPages(token, `/v2/users/${login}/scale_teams/as_corrector`, "given"),
+]);
+const pairs = buildPairs(received, given, login);
+summarize(pairs, received, given, login);
