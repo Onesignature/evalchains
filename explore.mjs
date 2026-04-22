@@ -1,3 +1,6 @@
+import { mkdirSync, writeFileSync } from "node:fs";
+import { dirname } from "node:path";
+
 const CLIENT_ID = process.env.FT_CLIENT_ID;
 const CLIENT_SECRET = process.env.FT_CLIENT_SECRET;
 const login = process.argv[2];
@@ -15,6 +18,7 @@ const API = "https://api.intra.42.fr";
 const PAGE_SIZE = 100;
 // 42 API limit: 2 req/sec per app. 600ms between pages keeps us safely under.
 const PAGE_DELAY_MS = 600;
+const JSON_OUT = `web/public/${login}.json`;
 
 async function getToken() {
   const r = await fetch(`${API}/oauth/token`, {
@@ -112,6 +116,20 @@ function summarize(pairs, received, given, selfLogin) {
   } else {
     console.log(`\nNo peers with reciprocal >= 2. Clean profile.`);
   }
+
+  return { totalRecv, totalGiven, uniqueRecv, uniqueGiven, overlap };
+}
+
+function exportJSON(pairs, stats, selfLogin, outPath) {
+  mkdirSync(dirname(outPath), { recursive: true });
+  const payload = {
+    subject: selfLogin,
+    generatedAt: new Date().toISOString(),
+    stats,
+    pairs: [...pairs].sort((a, b) => b.reciprocal - a.reciprocal || b.total - a.total),
+  };
+  writeFileSync(outPath, JSON.stringify(payload, null, 2));
+  console.error(`\nWrote ${outPath}`);
 }
 
 const token = await getToken();
@@ -121,4 +139,5 @@ const [received, given] = await Promise.all([
   fetchAllPages(token, `/v2/users/${login}/scale_teams/as_corrector`, "given"),
 ]);
 const pairs = buildPairs(received, given, login);
-summarize(pairs, received, given, login);
+const stats = summarize(pairs, received, given, login);
+exportJSON(pairs, stats, login, JSON_OUT);
