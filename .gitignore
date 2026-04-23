@@ -30,3 +30,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# Runtime probe cache (regenerated on demand by the dev-server middleware).
+# bsaeed.json stays tracked as sample seed data — use `git add -f` to refresh it.
+web/public/*.json
+!web/public/bsaeed.json

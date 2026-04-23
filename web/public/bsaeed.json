@@ -1,12 +1,22 @@
 {
-  "subject": "bsaeed",
-  "generatedAt": "2026-04-22T23:26:56.841Z",
+  "subject": {
+    "login": "bsaeed",
+    "displayName": "Bilal Saeed",
+    "imageUrl": "https://cdn.intra.42.fr/users/168e947ae78f3a0c6194dbdb1ac332fb/small_bsaeed.jpg"
+  },
+  "generatedAt": "2026-04-22T23:47:04.847Z",
   "stats": {
     "totalRecv": 127,
     "totalGiven": 122,
     "uniqueRecv": 97,
     "uniqueGiven": 91,
-    "overlap": 37
+    "overlap": 37,
+    "tiers": {
+      "tight": 2,
+      "reciprocal": 4,
+      "lopsided": 9,
+      "normal": 136
+    }
   },
   "pairs": [
     {
@@ -14,1057 +24,1661 @@
       "received": 2,
       "given": 5,
       "reciprocal": 2,
-      "total": 7
-    },
-    {
-      "peer": "hakaddou",
-      "received": 3,
-      "given": 2,
-      "reciprocal": 2,
-      "total": 5
-    },
-    {
-      "peer": "oabushar",
-      "received": 2,
-      "given": 3,
-      "reciprocal": 2,
-      "total": 5
-    },
-    {
-      "peer": "isaad",
-      "received": 2,
-      "given": 2,
-      "reciprocal": 2,
-      "total": 4
-    },
-    {
-      "peer": "3b3-95893",
-      "received": 2,
-      "given": 2,
-      "reciprocal": 2,
-      "total": 4
+      "max": 5,
+      "total": 7,
+      "displayName": "Alka Santhosh",
+      "imageUrl": "https://cdn.intra.42.fr/users/16e857bad25cea4c3b0071c8304b0add/small_asanthos.jpg",
+      "tier": "tight"
     },
     {
       "peer": "hheggy",
       "received": 1,
       "given": 5,
       "reciprocal": 1,
-      "total": 6
+      "max": 5,
+      "total": 6,
+      "displayName": "Hamam Heggy",
+      "imageUrl": "https://cdn.intra.42.fr/users/f15702b88247c98aac4268d7e5c5d1a4/small_hheggy.jpg",
+      "tier": "tight"
+    },
+    {
+      "peer": "hakaddou",
+      "received": 3,
+      "given": 2,
+      "reciprocal": 2,
+      "max": 3,
+      "total": 5,
+      "displayName": "Hadi Kaddoura",
+      "imageUrl": "https://cdn.intra.42.fr/users/265a1ba5c401afb3c036d5380769d1bf/small_hakaddou.jpg",
+      "tier": "reciprocal"
+    },
+    {
+      "peer": "oabushar",
+      "received": 2,
+      "given": 3,
+      "reciprocal": 2,
+      "max": 3,
+      "total": 5,
+      "displayName": "Omar Abusharib",
+      "imageUrl": "https://cdn.intra.42.fr/users/247aef2788976590d3516b14264d3231/small_oabushar.jpg",
+      "tier": "reciprocal"
+    },
+    {
+      "peer": "isaad",
+      "received": 2,
+      "given": 2,
+      "reciprocal": 2,
+      "max": 2,
+      "total": 4,
+      "displayName": "Imad Saad",
+      "imageUrl": "https://cdn.intra.42.fr/users/6c3cad2b4c2511b96cd3943cfffe4ff5/small_isaad.jpg",
+      "tier": "reciprocal"
+    },
+    {
+      "peer": "3b3-95893",
+      "received": 2,
+      "given": 2,
+      "reciprocal": 2,
+      "max": 2,
+      "total": 4,
+      "displayName": "3b3-95893",
+      "imageUrl": null,
+      "tier": "reciprocal"
     },
     {
       "peer": "gchernys",
       "received": 1,
       "given": 4,
       "reciprocal": 1,
-      "total": 5
-    },
-    {
-      "peer": "yoyohann",
-      "received": 3,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 4
-    },
-    {
-      "peer": "aalhamel",
-      "received": 1,
-      "given": 3,
-      "reciprocal": 1,
-      "total": 4
-    },
-    {
-      "peer": "yusman",
-      "received": 1,
-      "given": 2,
-      "reciprocal": 1,
-      "total": 3
-    },
-    {
-      "peer": "halwahed",
-      "received": 2,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 3
-    },
-    {
-      "peer": "aalseri",
-      "received": 2,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 3
-    },
-    {
-      "peer": "abin-saa",
-      "received": 1,
-      "given": 2,
-      "reciprocal": 1,
-      "total": 3
-    },
-    {
-      "peer": "aball",
-      "received": 2,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 3
-    },
-    {
-      "peer": "3b3-95432",
-      "received": 2,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 3
-    },
-    {
-      "peer": "talsaiaa",
-      "received": 1,
-      "given": 2,
-      "reciprocal": 1,
-      "total": 3
-    },
-    {
-      "peer": "3b3-93154",
-      "received": 2,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 3
-    },
-    {
-      "peer": "melkhati",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "bammar",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "fkhan",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "mmassarw",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "ooutabac",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "uisroilo",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "mraspors",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "arafeeq",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "rrangwan",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "abolat",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "mfirdous",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "mzahid",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "3b3-93134",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "dkaratae",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "kalmheir",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "lel-khou",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "3b3-93225",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "ael-masr",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "3b3-93165",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
-    },
-    {
-      "peer": "3b3-93171",
-      "received": 1,
-      "given": 1,
-      "reciprocal": 1,
-      "total": 2
+      "max": 4,
+      "total": 5,
+      "displayName": "German Chernysh",
+      "imageUrl": "https://cdn.intra.42.fr/users/c7525940884d4941d44bf86ae21bf6e2/small_gchernys.jpg",
+      "tier": "lopsided"
     },
     {
       "peer": "aikram",
       "received": 4,
       "given": 0,
       "reciprocal": 0,
-      "total": 4
+      "max": 4,
+      "total": 4,
+      "displayName": "Abdul Aziz Ikram",
+      "imageUrl": "https://cdn.intra.42.fr/users/1a578bf99c9bace144e4e9112baf8885/small_aikram.jpg",
+      "tier": "lopsided"
+    },
+    {
+      "peer": "yoyohann",
+      "received": 3,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 3,
+      "total": 4,
+      "displayName": "Yonas Yohannes",
+      "imageUrl": "https://cdn.intra.42.fr/users/7586828a88b320d2eae2e2db7887fd9e/small_yoyohann.jpg",
+      "tier": "lopsided"
+    },
+    {
+      "peer": "aalhamel",
+      "received": 1,
+      "given": 3,
+      "reciprocal": 1,
+      "max": 3,
+      "total": 4,
+      "displayName": "Alhai Alhameli",
+      "imageUrl": "https://cdn.intra.42.fr/users/4cc807cc021474b754ec81ef2baf9e79/small_aalhamel.jpg",
+      "tier": "lopsided"
     },
     {
       "peer": "cmrabet",
       "received": 3,
       "given": 0,
       "reciprocal": 0,
-      "total": 3
+      "max": 3,
+      "total": 3,
+      "displayName": "Chaimae Mrabet",
+      "imageUrl": "https://cdn.intra.42.fr/users/b7f75de168cf866869c95fe46f0b97c8/small_cmrabet.jpg",
+      "tier": "lopsided"
     },
     {
       "peer": "ikhan",
       "received": 3,
       "given": 0,
       "reciprocal": 0,
-      "total": 3
+      "max": 3,
+      "total": 3,
+      "displayName": "Ikhlas Khan",
+      "imageUrl": "https://cdn.intra.42.fr/users/7ddfd9a5245eb80806e6fc81d20d6d8e/small_ikhan.jpg",
+      "tier": "lopsided"
     },
     {
       "peer": "muganiev",
       "received": 0,
       "given": 3,
       "reciprocal": 0,
-      "total": 3
+      "max": 3,
+      "total": 3,
+      "displayName": "Mukhammadusmon Ganiev",
+      "imageUrl": "https://cdn.intra.42.fr/users/d873cd4ff5403b43b8313fb5a5adfa5a/small_muganiev.jpg",
+      "tier": "lopsided"
     },
     {
       "peer": "rriyas",
       "received": 0,
       "given": 3,
       "reciprocal": 0,
-      "total": 3
+      "max": 3,
+      "total": 3,
+      "displayName": "Radi Aman Riyas",
+      "imageUrl": "https://cdn.intra.42.fr/users/4b5e575792269fa6bf688fee7cf2e08a/small_rriyas.jpg",
+      "tier": "lopsided"
     },
     {
       "peer": "mal-hadr",
       "received": 0,
       "given": 3,
       "reciprocal": 0,
-      "total": 3
+      "max": 3,
+      "total": 3,
+      "displayName": "Muna Al Hadrami",
+      "imageUrl": "https://cdn.intra.42.fr/users/897d0601dd2319972272410d8ea01b42/small_mal-hadr.jpg",
+      "tier": "lopsided"
+    },
+    {
+      "peer": "yusman",
+      "received": 1,
+      "given": 2,
+      "reciprocal": 1,
+      "max": 2,
+      "total": 3,
+      "displayName": "Yasin Usman",
+      "imageUrl": "https://cdn.intra.42.fr/users/2818dfba231bcf32db7116596a30d535/small_yusman.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "halwahed",
+      "received": 2,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 2,
+      "total": 3,
+      "displayName": "Hamda Alwahedi",
+      "imageUrl": "https://cdn.intra.42.fr/users/22526ea74a368196c3ce9708516b01dd/small_halwahed.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "aalseri",
+      "received": 2,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 2,
+      "total": 3,
+      "displayName": "Abubaker Alseri",
+      "imageUrl": "https://cdn.intra.42.fr/users/3663f063ea664271af1f734da1064f39/small_aalseri.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "abin-saa",
+      "received": 1,
+      "given": 2,
+      "reciprocal": 1,
+      "max": 2,
+      "total": 3,
+      "displayName": "Abdulrahman Bin Saad",
+      "imageUrl": "https://cdn.intra.42.fr/users/27fb426a31e9e916f5e0959021c8f941/small_abin-saa.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "aball",
+      "received": 2,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 2,
+      "total": 3,
+      "displayName": "Alexandra Ball",
+      "imageUrl": "https://cdn.intra.42.fr/users/822047b86abe0398400b4a3cb572d6ad/small_aball.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "3b3-95432",
+      "received": 2,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 2,
+      "total": 3,
+      "displayName": "3b3-95432",
+      "imageUrl": null,
+      "tier": "normal"
+    },
+    {
+      "peer": "talsaiaa",
+      "received": 1,
+      "given": 2,
+      "reciprocal": 1,
+      "max": 2,
+      "total": 3,
+      "displayName": "Talal Alsaiaari",
+      "imageUrl": "https://cdn.intra.42.fr/users/05f4d8319854d9be09658c4f6d0fe2a8/small_talsaiaa.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "3b3-93154",
+      "received": 2,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 2,
+      "total": 3,
+      "displayName": "3b3-93154",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "numussan",
       "received": 2,
       "given": 0,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "Nurmurat Mussanov",
+      "imageUrl": "https://cdn.intra.42.fr/users/0e2c8a7e525d02fd373b68a1845d03a4/small_numussan.jpg",
+      "tier": "normal"
     },
     {
       "peer": "sabdelra",
       "received": 2,
       "given": 0,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "Samih Abdelrahman",
+      "imageUrl": "https://cdn.intra.42.fr/users/edada5d895e346d1625c1379f98372c9/small_sabdelra.jpg",
+      "tier": "normal"
     },
     {
       "peer": "nalshebl",
       "received": 2,
       "given": 0,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "Noof Alshebli",
+      "imageUrl": "https://cdn.intra.42.fr/users/53a8608645e80518f7694432085f9f59/small_nalshebl.jpg",
+      "tier": "normal"
     },
     {
       "peer": "habu-zua",
       "received": 2,
       "given": 0,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "Hisham Abu Zuaiter",
+      "imageUrl": "https://cdn.intra.42.fr/users/aa1e14938712256b8210f9fa9c91f323/small_habu-zua.jpg",
+      "tier": "normal"
     },
     {
       "peer": "szubair",
       "received": 2,
       "given": 0,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "Samiya Zubair",
+      "imageUrl": "https://cdn.intra.42.fr/users/e8122dcf9db0eeb48fc2afc1959852b5/small_szubair.jpg",
+      "tier": "normal"
     },
     {
       "peer": "salmazro",
       "received": 2,
       "given": 0,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "Shama Almazrouei",
+      "imageUrl": "https://cdn.intra.42.fr/users/1f419a7842c7d378ef8ee89fd27a4bcc/small_salmazro.jpg",
+      "tier": "normal"
     },
     {
       "peer": "zosobiro",
       "received": 2,
       "given": 0,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "Zoirjon Sobirov",
+      "imageUrl": "https://cdn.intra.42.fr/users/b97f9603b469ae68bc7335fac53ca84c/small_zosobiro.jpg",
+      "tier": "normal"
     },
     {
       "peer": "hsarhan",
       "received": 2,
       "given": 0,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "Hassan Sarhan",
+      "imageUrl": "https://cdn.intra.42.fr/users/609052e77e915e3fdebe6ec79918c59b/small_hsarhan.jpg",
+      "tier": "normal"
     },
     {
       "peer": "aderugo",
       "received": 2,
       "given": 0,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "Aliaksandr Dziaruha",
+      "imageUrl": "https://cdn.intra.42.fr/users/14172a6011bac6c58cf9aa16bcb8ef36/small_aderugo.jpg",
+      "tier": "normal"
     },
     {
       "peer": "ytouab",
       "received": 2,
       "given": 0,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "Yassir Touab",
+      "imageUrl": "https://cdn.intra.42.fr/users/f7c0bd617db2c010a88739b557c3ceda/small_ytouab.jpg",
+      "tier": "normal"
     },
     {
       "peer": "bgordag",
       "received": 0,
       "given": 2,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "Büşra Gördağ",
+      "imageUrl": "https://cdn.intra.42.fr/users/49aa817f05549cb6d004097dbcee55a3/small_bgordag.jpg",
+      "tier": "normal"
     },
     {
       "peer": "dboyko",
       "received": 0,
       "given": 2,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "Dmitry Boyko",
+      "imageUrl": "https://cdn.intra.42.fr/users/445163e9bf740e3c473e5ebec50d2709/small_dboyko.jpg",
+      "tier": "normal"
     },
     {
       "peer": "ahhammou",
       "received": 0,
       "given": 2,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "Ahmad Hammoudeh",
+      "imageUrl": "https://cdn.intra.42.fr/users/f6caf9e4d14bc3e57eeac657fded9b29/small_ahhammou.jpg",
+      "tier": "normal"
     },
     {
       "peer": "3b3-91079",
       "received": 0,
       "given": 2,
       "reciprocal": 0,
-      "total": 2
+      "max": 2,
+      "total": 2,
+      "displayName": "3b3-91079",
+      "imageUrl": null,
+      "tier": "normal"
+    },
+    {
+      "peer": "melkhati",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Mahmoud Elkhatib",
+      "imageUrl": "https://cdn.intra.42.fr/users/bf4db580e4177dd15ad1cc5e2ed77070/small_melkhati.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "bammar",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Bachir Ammar",
+      "imageUrl": "https://cdn.intra.42.fr/users/568bd0721eddefef537db4caafd8b217/small_bammar.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "fkhan",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Faraz Khan",
+      "imageUrl": "https://cdn.intra.42.fr/users/c27c5c720348e1f7053229c631c0bed4/small_fkhan.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "mmassarw",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Mohammad Massarweh",
+      "imageUrl": "https://cdn.intra.42.fr/users/70a12ff0a40e78c442be898402bae966/small_mmassarw.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "ooutabac",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Obada Outabachi",
+      "imageUrl": "https://cdn.intra.42.fr/users/8e8603ffe7197903e40ba8feab598a4d/small_ooutabac.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "uisroilo",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Ulugbek Isroilov",
+      "imageUrl": "https://cdn.intra.42.fr/users/abff641d934d45811956646a6f34476f/small_uisroilo.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "mraspors",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Maksim Rasporskyi",
+      "imageUrl": "https://cdn.intra.42.fr/users/5f6128a14bf861e5271a6f2e10099ec7/small_mraspors.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "arafeeq",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Azra Rafeeq",
+      "imageUrl": "https://cdn.intra.42.fr/users/3b1452c7f9210b11aecf793ec645221a/small_arafeeq.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "rrangwan",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Raj Kumar Rangwani",
+      "imageUrl": "https://cdn.intra.42.fr/users/e54124776958652a8e3113dce074d962/small_rrangwan.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "abolat",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Ayakoz Bolat",
+      "imageUrl": "https://cdn.intra.42.fr/users/f1c8a4da24ab6402b5e1bb34684ebc19/small_abolat.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "mfirdous",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Mehrin Firdousi",
+      "imageUrl": "https://cdn.intra.42.fr/users/fc0dff16e87d8fd4304ffcda433ca60f/small_mfirdous.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "mzahid",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Muhammad Sharjeel Zahid",
+      "imageUrl": "https://cdn.intra.42.fr/users/07adc0cdc3940e0260a1fea22af16307/small_mzahid.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "3b3-93134",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "3b3-93134",
+      "imageUrl": null,
+      "tier": "normal"
+    },
+    {
+      "peer": "dkaratae",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Dzholdoshbek Karataev",
+      "imageUrl": "https://cdn.intra.42.fr/users/57df91f1343c7808a2b5a7ff6b072589/small_dkaratae.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "kalmheir",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Khalifa Almheiri",
+      "imageUrl": "https://cdn.intra.42.fr/users/5e6db35dba5aae991b83f67b9504f60d/small_kalmheir.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "lel-khou",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Lara El Khoury",
+      "imageUrl": "https://cdn.intra.42.fr/users/d438c41c0032ff3b762ce928d9bff416/small_lel-khou.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "3b3-93225",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "3b3-93225",
+      "imageUrl": null,
+      "tier": "normal"
+    },
+    {
+      "peer": "ael-masr",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "Abdul Aziz El Masri",
+      "imageUrl": "https://cdn.intra.42.fr/users/db92d133f5a13891c8b7ee03afc5f494/small_ael-masr.jpg",
+      "tier": "normal"
+    },
+    {
+      "peer": "3b3-93165",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "3b3-93165",
+      "imageUrl": null,
+      "tier": "normal"
+    },
+    {
+      "peer": "3b3-93171",
+      "received": 1,
+      "given": 1,
+      "reciprocal": 1,
+      "max": 1,
+      "total": 2,
+      "displayName": "3b3-93171",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "alsaeed",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Ali Saeed",
+      "imageUrl": "https://cdn.intra.42.fr/users/a25849135917f2d3c8762c5797d3f3d0/small_alsaeed.jpeg",
+      "tier": "normal"
     },
     {
       "peer": "nateliya",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Natinael Eliyas",
+      "imageUrl": "https://cdn.intra.42.fr/users/92770f853a2a36b0656588466afed737/small_nateliya.jpg",
+      "tier": "normal"
     },
     {
       "peer": "ahaarij",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Ahmed Aarij",
+      "imageUrl": "https://cdn.intra.42.fr/users/50ea7c649b1a57f48295520105aa87b3/small_ahaarij.jpg",
+      "tier": "normal"
     },
     {
       "peer": "ahashem",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Aisha Hashem",
+      "imageUrl": "https://cdn.intra.42.fr/users/a6834dc90cdd0bbf6de4cd585674f672/small_ahashem.jpg",
+      "tier": "normal"
     },
     {
       "peer": "wahmed",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Wadha Ahmed",
+      "imageUrl": "https://cdn.intra.42.fr/users/b0a7703feb8ffee318fd798b99245d2a/small_wahmed.jpg",
+      "tier": "normal"
     },
     {
       "peer": "alabdull",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Alisher Abdullaev",
+      "imageUrl": "https://cdn.intra.42.fr/users/03e4cd9b6386be56fa506dd2673e8438/small_alabdull.jpg",
+      "tier": "normal"
     },
     {
       "peer": "lps",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Lakshmi Ps",
+      "imageUrl": "https://cdn.intra.42.fr/users/38e3ffa489c3565ca9bb9bb835638819/small_lps.jpg",
+      "tier": "normal"
     },
     {
       "peer": "mabdelma",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Mohamed Abdelmaged",
+      "imageUrl": "https://cdn.intra.42.fr/users/335fbadbebf3ec0c765aa9dfda9e4751/small_mabdelma.jpg",
+      "tier": "normal"
     },
     {
       "peer": "smuhamma",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Shahab Muhammad Shakir",
+      "imageUrl": "https://cdn.intra.42.fr/users/754b2292bd8563298b9d11526cab47a7/small_smuhamma.jpg",
+      "tier": "normal"
     },
     {
       "peer": "lde-alen",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Lucas De Alencastro Moreira",
+      "imageUrl": "https://cdn.intra.42.fr/users/f6e80427f62c016d31c4c4b4bb15a142/small_lde-alen.jpg",
+      "tier": "normal"
     },
     {
       "peer": "esimpson",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Emilin Simpson",
+      "imageUrl": "https://cdn.intra.42.fr/users/69f0bc86385b0d1d85650fae24b3930c/small_esimpson.jpg",
+      "tier": "normal"
     },
     {
       "peer": "msoufi",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Mulham Soufi",
+      "imageUrl": "https://cdn.intra.42.fr/users/7922805cd1074e67b143349b52d20955/small_msoufi.jpg",
+      "tier": "normal"
     },
     {
       "peer": "absalem",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Abdullah Ali Salem",
+      "imageUrl": "https://cdn.intra.42.fr/users/3cd013c74bb445e7650fb7e8bdbf5301/small_absalem.jpg",
+      "tier": "normal"
     },
     {
       "peer": "azaaza",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Ahmad Rajai Zaaza",
+      "imageUrl": "https://cdn.intra.42.fr/users/173548bd0422574123743591c5122bb1/small_azaaza.jpg",
+      "tier": "normal"
     },
     {
       "peer": "cegbulef",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Chinedu Egbulefu",
+      "imageUrl": "https://cdn.intra.42.fr/users/9c88a7750af8acff23fabfd96a3c2102/small_cegbulef.jpg",
+      "tier": "normal"
     },
     {
       "peer": "afarheen",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Aysha Farheen",
+      "imageUrl": "https://cdn.intra.42.fr/users/e6b03e2c6aa75e6df84895b05d2de654/small_afarheen.jpg",
+      "tier": "normal"
     },
     {
       "peer": "mkovoor",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Mariam Kovoor",
+      "imageUrl": "https://cdn.intra.42.fr/users/46661e716aabce8dfd4ecc59377be429/small_mkovoor.jpg",
+      "tier": "normal"
     },
     {
       "peer": "abduabdu",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Abdulrahman Abdullah",
+      "imageUrl": "https://cdn.intra.42.fr/users/a70ac148a17f5e7f4a4c1f36a3216967/small_abduabdu.jpg",
+      "tier": "normal"
     },
     {
       "peer": "aandom",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Alexander Andom",
+      "imageUrl": "https://cdn.intra.42.fr/users/f4b75e07ada668f3282c593bcec283d2/small_aandom.jpg",
+      "tier": "normal"
     },
     {
       "peer": "hmohamed",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Hashim Mohamed",
+      "imageUrl": "https://cdn.intra.42.fr/users/99f6e4e44e3efd6d77543c6272e1904f/small_hmohamed.jpg",
+      "tier": "normal"
     },
     {
       "peer": "fakayumo",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Farangiz Kayumova",
+      "imageUrl": "https://cdn.intra.42.fr/users/d19a6b50bf0258659a386e508b068afb/small_fakayumo.jpg",
+      "tier": "normal"
     },
     {
       "peer": "hbui-vu",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Huong Bui Vu",
+      "imageUrl": "https://cdn.intra.42.fr/users/c5a29b56c8c3e6bad74fc8a47a3aede9/small_hbui-vu.jpg",
+      "tier": "normal"
     },
     {
       "peer": "ahussein",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Ayoob Hussein",
+      "imageUrl": "https://cdn.intra.42.fr/users/72c84d26d4d484ef8a35282605a3d87b/small_ahussein.jpg",
+      "tier": "normal"
     },
     {
       "peer": "skabeer",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Semy Kabeer",
+      "imageUrl": "https://cdn.intra.42.fr/users/1df5450a680a36d5e7a6fd427cfa27df/small_skabeer.jpg",
+      "tier": "normal"
     },
     {
       "peer": "sabdulla",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Salem Abdullah",
+      "imageUrl": "https://cdn.intra.42.fr/users/b975c25119ff7ff33f41a1adb6baf2e0/small_sabdulla.jpg",
+      "tier": "normal"
     },
     {
       "peer": "yonamog2",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Yonatan Moges",
+      "imageUrl": "https://cdn.intra.42.fr/users/ef84c7d4e95e4887e3ce64af8e6d3acf/small_yonamog2.jpg",
+      "tier": "normal"
     },
     {
       "peer": "mohouhou",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Mohamed Raouf Houhou",
+      "imageUrl": "https://cdn.intra.42.fr/users/9ee039ffd9289a599bc2acaafc099600/small_mohouhou.GIF",
+      "tier": "normal"
     },
     {
       "peer": "igbocha3",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Igor Bocharov",
+      "imageUrl": "https://cdn.intra.42.fr/users/d482b55b17154689efe1682d91c05f91/small_igbocha3.jpg",
+      "tier": "normal"
     },
     {
       "peer": "abensahr",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Abdelhak Bensahraoui",
+      "imageUrl": "https://cdn.intra.42.fr/users/d50cd9f225848f9cc8cff74e75dd74e2/small_abensahr.jpg",
+      "tier": "normal"
     },
     {
       "peer": "3b3-101504",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-101504",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "jperinch",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Joe Shaju Perinchery",
+      "imageUrl": "https://cdn.intra.42.fr/users/7c108c608b4b5fddad9172e75e1a8020/small_jperinch.jpg",
+      "tier": "normal"
     },
     {
       "peer": "sbokhari",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Shaik Mazin Bokhari",
+      "imageUrl": "https://cdn.intra.42.fr/users/7cb998f5d60a5b088d61b60af1506d43/small_sbokhari.jpg",
+      "tier": "normal"
     },
     {
       "peer": "oal-tena",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Obaid Al Tenaiji",
+      "imageUrl": "https://cdn.intra.42.fr/users/1ed55f516e34805c11d93de1e0642186/small_oal-tena.jpg",
+      "tier": "normal"
     },
     {
       "peer": "gabdoush",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Ghaiath Abdoush",
+      "imageUrl": "https://cdn.intra.42.fr/users/83460091cb8746a231fc632c8354fa15/small_gabdoush.jpg",
+      "tier": "normal"
     },
     {
       "peer": "gkintana",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Gerard Enrico Kintana",
+      "imageUrl": "https://cdn.intra.42.fr/users/66bfccc72c805279befb2ad55309b37d/small_gkintana.jpg",
+      "tier": "normal"
     },
     {
       "peer": "3b3-95686",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-95686",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "3b3-95433",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-95433",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "3b3-95423",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-95423",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "3b3-95945",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-95945",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "3b3-93173",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-93173",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "3b3-93170",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-93170",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "mpatel",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Mohammed Patel",
+      "imageUrl": "https://cdn.intra.42.fr/users/867fb70fc053b9153d6298f42e5d794b/small_mpatel.jpg",
+      "tier": "normal"
     },
     {
       "peer": "3b3-93135",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-93135",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "mmoopan",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Mohideen Moopan",
+      "imageUrl": "https://cdn.intra.42.fr/users/641e22bfb43ef159e4b65fb381572899/small_mmoopan.jpg",
+      "tier": "normal"
     },
     {
       "peer": "3b3-93145",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-93145",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "3b3-95440",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-95440",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "3b3-93252",
       "received": 1,
       "given": 0,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-93252",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "oimam",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Omer Imam",
+      "imageUrl": "https://cdn.intra.42.fr/users/0900b67f9f20898e6e120fa9f9e4da22/small_oimam.jpg",
+      "tier": "normal"
     },
     {
       "peer": "stariq",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Saad Tariq",
+      "imageUrl": "https://cdn.intra.42.fr/users/f840f6baca16cd6ea67a0db94ce15293/small_stariq.jpg",
+      "tier": "normal"
     },
     {
       "peer": "abdsayed",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Abdullah Sayed",
+      "imageUrl": "https://cdn.intra.42.fr/users/ab11797788fa0da418b188ee9e38dab3/small_abdsayed.jpg",
+      "tier": "normal"
     },
     {
       "peer": "sbakhit",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Sarah Bakhit",
+      "imageUrl": "https://cdn.intra.42.fr/users/1eff240ba8bfb30df39f02c263784efa/small_sbakhit.jpg",
+      "tier": "normal"
     },
     {
       "peer": "szhakypo",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Syimyk Zhakypov",
+      "imageUrl": "https://cdn.intra.42.fr/users/d114283f6a7fb8c00da997a249b2f89f/small_szhakypo.jpg",
+      "tier": "normal"
     },
     {
       "peer": "emaravil",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Eli Joshua Maravillas",
+      "imageUrl": "https://cdn.intra.42.fr/users/eeb8047fc6b001bec7214298bef9326e/small_emaravil.jpg",
+      "tier": "normal"
     },
     {
       "peer": "istepano",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Ilia Stepanov",
+      "imageUrl": "https://cdn.intra.42.fr/users/23b5cbc6ed434a878136573337272a81/small_istepano.jpg",
+      "tier": "normal"
     },
     {
       "peer": "naadam",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Naib Adam",
+      "imageUrl": "https://cdn.intra.42.fr/users/1b80a96247d30c8c5df6d0381af90f31/small_naadam.jpg",
+      "tier": "normal"
     },
     {
       "peer": "kganeriw",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Ketki Ganeriwal",
+      "imageUrl": "https://cdn.intra.42.fr/users/cbd51259248a86ff4cde4f09b546a5ae/small_kganeriw.jpg",
+      "tier": "normal"
     },
     {
       "peer": "makhtar",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Muazzam Akhtar",
+      "imageUrl": "https://cdn.intra.42.fr/users/86c3515b71eccbe6e5b1d1fbd6cc70f5/small_makhtar.jpg",
+      "tier": "normal"
     },
     {
       "peer": "mlumibao",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Martin Ruiz Lumibao",
+      "imageUrl": "https://cdn.intra.42.fr/users/43c97bc686dbe402b6d78dcb5a202a75/small_mlumibao.jpg",
+      "tier": "normal"
     },
     {
       "peer": "aal-jaee",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Abdulrahman Al Jaeedi",
+      "imageUrl": "https://cdn.intra.42.fr/users/83d1d8354209ffbdbaef401f6c583540/small_aal-jaee.jpg",
+      "tier": "normal"
     },
     {
       "peer": "ysadeh",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Yousef Sadeh",
+      "imageUrl": "https://cdn.intra.42.fr/users/5dc9993c63139dee73c17551387a9a39/small_ysadeh.jpg",
+      "tier": "normal"
     },
     {
       "peer": "ivaliev",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Islom Valiev",
+      "imageUrl": "https://cdn.intra.42.fr/users/b7089c0d928c910f5cee2a82fa37c472/small_ivaliev.jpg",
+      "tier": "normal"
     },
     {
       "peer": "aalbobak",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Anas Albobak",
+      "imageUrl": "https://cdn.intra.42.fr/users/d03cd601fb099e7cb6a5ac01e943b179/small_aalbobak.jpg",
+      "tier": "normal"
     },
     {
       "peer": "alalmazr",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Alyazia Almazrouei",
+      "imageUrl": "https://cdn.intra.42.fr/users/7bfc9da0940c285a8f3166d0a70fb319/small_alalmazr.jpg",
+      "tier": "normal"
     },
     {
       "peer": "rsalam",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Raeesa Salam",
+      "imageUrl": "https://cdn.intra.42.fr/users/6b3407f5cfd36ee8e6a8b79b0b1627f5/small_rsalam.jpg",
+      "tier": "normal"
     },
     {
       "peer": "yhaidar",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Youssef Haidar",
+      "imageUrl": "https://cdn.intra.42.fr/users/28203aeef8463bdc16441c4d6b66fcd5/small_yhaidar.jpg",
+      "tier": "normal"
     },
     {
       "peer": "masultan",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Maysa Sultan",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "mkiflema",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Merhawi Kiflemariam",
+      "imageUrl": "https://cdn.intra.42.fr/users/6478bf4d10b2f6e9a81051a5084b186d/small_mkiflema.jpg",
+      "tier": "normal"
     },
     {
       "peer": "aelsiddi",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Amro Elsiddig",
+      "imageUrl": "https://cdn.intra.42.fr/users/eb79841549320e9d33255f93f67dec89/small_aelsiddi.jpeg",
+      "tier": "normal"
     },
     {
       "peer": "kamin",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Karim Amin",
+      "imageUrl": "https://cdn.intra.42.fr/users/934c67599a41f9cc7468183a119585ef/small_kamin.jpg",
+      "tier": "normal"
     },
     {
       "peer": "ommohame",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Omar Mohamed",
+      "imageUrl": "https://cdn.intra.42.fr/users/19358cd7cc99bb796aff0069104b4e20/small_ommohame.jpg",
+      "tier": "normal"
     },
     {
       "peer": "3b3-90019",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-90019",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "3b3-90077",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-90077",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "apila-va",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Abdul Samad Pila Valappil",
+      "imageUrl": "https://cdn.intra.42.fr/users/2d0d34434a633d2f79af61dfb86525f1/small_apila-va.jpg",
+      "tier": "normal"
     },
     {
       "peer": "jsyed-gh",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Jailani Syed Ghulam",
+      "imageUrl": "https://cdn.intra.42.fr/users/a8473ce032fb70f0cef0ad978ad84af2/small_jsyed-gh.jpg",
+      "tier": "normal"
     },
     {
       "peer": "otalha",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Ouafa Talha",
+      "imageUrl": "https://cdn.intra.42.fr/users/c83e9c502b6b8fc7161e28a9bf704e35/small_otalha.jpg",
+      "tier": "normal"
     },
     {
       "peer": "3b3-101445",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-101445",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "ahsalem",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Ahmed Salem",
+      "imageUrl": "https://cdn.intra.42.fr/users/295398b1d26a373b154aff064183dbb1/small_ahsalem.jpg",
+      "tier": "normal"
     },
     {
       "peer": "3b3-101549",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-101549",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "mumohamm",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Mudar Mohammad",
+      "imageUrl": "https://cdn.intra.42.fr/users/ac1de227d776bd97a73aa8a8a6bacfe1/small_mumohamm.jpg",
+      "tier": "normal"
     },
     {
       "peer": "hawadh",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Hussain Awadh",
+      "imageUrl": "https://cdn.intra.42.fr/users/b706c7049ed6172e3b5fc5f45e2258db/small_hawadh.jpg",
+      "tier": "normal"
     },
     {
       "peer": "halderei",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Hasna Alderei",
+      "imageUrl": "https://cdn.intra.42.fr/users/ad1f22730066ee7c078e629f3f8e19db/small_halderei.jpg",
+      "tier": "normal"
     },
     {
       "peer": "3b3-93242",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-93242",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "oalawadh",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Omar Alawadhi",
+      "imageUrl": "https://cdn.intra.42.fr/users/c8e5da50eaca8b40d8a1c54c30df3eb9/small_oalawadh.jpg",
+      "tier": "normal"
     },
     {
       "peer": "3b3-93151",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-93151",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "3b3-93247",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-93247",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "melsewei",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Mohamed Elseweify",
+      "imageUrl": "https://cdn.intra.42.fr/users/bece3bb42e9831aec7263159d3d34323/small_melsewei.jpg",
+      "tier": "normal"
     },
     {
       "peer": "maalzaab",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Mariam Alzaabi",
+      "imageUrl": "https://cdn.intra.42.fr/users/b1bd9f92008c433c6fa272701aa86bd6/small_maalzaab.jpg",
+      "tier": "normal"
     },
     {
       "peer": "aghazi",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Abdullah Ghazi",
+      "imageUrl": "https://cdn.intra.42.fr/users/9e2b4c2526008199dbecc37ba3f34751/small_aghazi.jpg",
+      "tier": "normal"
     },
     {
       "peer": "3b3-93158",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-93158",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "3b3-93163",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-93163",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "3b3-93239",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-93239",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "3b3-93162",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-93162",
+      "imageUrl": null,
+      "tier": "normal"
     },
     {
       "peer": "aalkhale",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "Alyazia Alkhaled",
+      "imageUrl": "https://cdn.intra.42.fr/users/af0d29f085ea459abb74c9366abf62de/small_aalkhale.jpg",
+      "tier": "normal"
     },
     {
       "peer": "3b3-93144",
       "received": 0,
       "given": 1,
       "reciprocal": 0,
-      "total": 1
+      "max": 1,
+      "total": 1,
+      "displayName": "3b3-93144",
+      "imageUrl": null,
+      "tier": "normal"
     }
   ]
 }
