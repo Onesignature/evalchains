@@ -1,3 +1,7 @@
+<p align="left">
+  <img src="web/public/favicon.svg" alt="Evalchain" width="56" height="56" />
+</p>
+
 # Evalchain
 
 A Bubblemaps-style evaluation-pattern visualizer for the 42 Network.
