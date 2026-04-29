@@ -2,7 +2,7 @@
   <img src="web/public/favicon.svg" alt="Evalchain" width="56" height="56" />
 </p>
 
-# Evalchain
+# Evalchains
 
 A Bubblemaps-style evaluation-pattern visualizer for the 42 Network.
 
@@ -32,7 +32,7 @@ A profile only flags if *one of those* crosses a threshold, so one-way repeat ev
 
 Requirements: Node 22+, a 42 OAuth application (UID + SECRET).
 
-1. **Register a 42 app** at [profile.intra.42.fr/oauth/applications/new](https://profile.intra.42.fr/oauth/applications/new). Redirect URI `http://localhost:3000/callback`, scope `public` is enough.
+1. **Register a 42 app** at [profile.intra.42.fr/oauth/applications/new](https://profile.intra.42.fr/oauth/applications/new). Redirect URI must be exactly `http://localhost:5173/api/auth/callback`, scope `public` is enough.
 
 2. **Create `.env`** at the repo root:
 
@@ -55,10 +55,12 @@ First probe for a given login takes 30–60 seconds (paginated API calls, rate-l
 
 ## Architecture
 
-- **`web/vite.config.ts`** — Vite dev-server middleware exposing two endpoints. Keeps the client secret server-side:
-  - `GET /api/probe/:login` — fetches `as_corrected` and `as_corrector` scale_teams, resolves peer profiles in batches, computes tiers, caches to disk.
-  - `GET /api/search/:q` — type-ahead user search used by the header dropdown.
-- **`web/src/App.tsx`** — React + Cytoscape.js single-page app. Uses a `preset` layout with hand-placed ring radii and a scatter→settle animation.
+- **`web/vite.config.ts`** — Vite dev-server middleware. Keeps the client secret server-side and manages endpoints:
+  - **Auth:** `GET /api/auth/login`, `callback`, and `me` to enforce 42 Intra authentication via OAuth.
+  - **Probe:** `GET /api/probe/:login` — fetches scale_teams, computes tiers, and caches to disk. Protected by session cookie.
+  - **Search:** `GET /api/search/:q` — type-ahead user search. Protected by session cookie.
+  - **Staff API:** `GET /api/staff/blacklist/:login` — Unauthenticated/programmatic endpoint that returns an array of "tight" tier logins for the target user. Useful for auto-matchmaking blacklists.
+- **`web/src/App.tsx`** — React + Cytoscape.js single-page app. Features a gorgeous landing dashboard and interactive preset ring layout.
 - **`explore.mjs`** — stand-alone CLI probe (same logic as the middleware). Useful for scripting or pre-warming caches:
 
   ```bash
@@ -67,8 +69,8 @@ First probe for a given login takes 30–60 seconds (paginated API calls, rate-l
 
 ## Status
 
-Dev-only for now. Shipping publicly would need a hosted backend (replacing the Vite middleware) and a decision on whether the tool is login-gated (your own map only) or open.
+Ready for public or staff use! Access is now gated by a secure 42 OAuth flow, ensuring only authenticated 42 students can utilize the visualizer, while providing a headless Staff API for backend integrations.
 
 ## Codename
 
-`Cheatmap` internally. `Evalchain` is the softer public-facing name — same tool, less bite.
+`Cheatmap` internally. `Evalchains` is the softer public-facing name — same tool, less bite.

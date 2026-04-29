@@ -154,6 +154,122 @@ export default defineConfig({
       configureServer(server) {
         const publicDir = join(server.config.root, "public");
         server.middlewares.use(async (req, res, next) => {
+          // 1. Auth routes
+          const authLoginMatch = req.url?.match(/^\/api\/auth\/login$/);
+          if (authLoginMatch) {
+            const id = process.env.FT_CLIENT_ID;
+            const redirectUri = "http://localhost:5173/api/auth/callback";
+            const url = `${API}/oauth/authorize?client_id=${id}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code`;
+            res.statusCode = 302;
+            res.setHeader("Location", url);
+            res.end();
+            return;
+          }
+
+          const authCallbackMatch = req.url?.match(/^\/api\/auth\/callback\?code=([^&]+)/);
+          if (authCallbackMatch) {
+            const code = authCallbackMatch[1];
+            const id = process.env.FT_CLIENT_ID;
+            const secret = process.env.FT_CLIENT_SECRET;
+            const redirectUri = "http://localhost:5173/api/auth/callback";
+            try {
+              const r = await fetch(`${API}/oauth/token`, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({
+                  grant_type: "authorization_code",
+                  client_id: id!,
+                  client_secret: secret!,
+                  code,
+                  redirect_uri: redirectUri,
+                }),
+              });
+              if (!r.ok) throw new Error(`auth callback failed: ${await r.text()}`);
+              const { access_token } = await r.json() as any;
+              
+              res.setHeader("Set-Cookie", `evalchains_session=${access_token}; Path=/; HttpOnly; Max-Age=86400`);
+              res.statusCode = 302;
+              res.setHeader("Location", "/");
+              res.end();
+            } catch (err) {
+              res.statusCode = 500;
+              res.end(String(err));
+            }
+            return;
+          }
+
+          const authMeMatch = req.url?.match(/^\/api\/auth\/me$/);
+          if (authMeMatch) {
+            const cookies = req.headers.cookie || "";
+            const sessionMatch = cookies.match(/evalchains_session=([^;]+)/);
+            if (!sessionMatch) {
+              res.statusCode = 401;
+              res.end(JSON.stringify({ error: "Unauthorized" }));
+              return;
+            }
+            try {
+              const r = await fetch(`${API}/v2/me`, {
+                headers: { Authorization: `Bearer ${sessionMatch[1]}` }
+              });
+              if (!r.ok) throw new Error("Invalid token");
+              const user = (await r.json()) as any;
+              res.setHeader("Content-Type", "application/json");
+              res.end(JSON.stringify({ login: user.login, imageUrl: pickAvatar(user) }));
+            } catch {
+              res.setHeader("Set-Cookie", `evalchains_session=; Path=/; HttpOnly; Max-Age=0`);
+              res.statusCode = 401;
+              res.end(JSON.stringify({ error: "Invalid session" }));
+            }
+            return;
+          }
+
+          const authLogoutMatch = req.url?.match(/^\/api\/auth\/logout$/);
+          if (authLogoutMatch) {
+            res.setHeader("Set-Cookie", `evalchains_session=; Path=/; HttpOnly; Max-Age=0`);
+            res.statusCode = 302;
+            res.setHeader("Location", "/");
+            res.end();
+            return;
+          }
+
+          // Staff API - Export tight peers for blacklisting in peer-matching
+          const staffBlacklistMatch = req.url?.match(/^\/api\/staff\/blacklist\/([^?]+)(\?.*)?$/);
+          if (staffBlacklistMatch) {
+            // In a real environment, you'd check a staff token here
+            // const apiKey = req.headers["x-api-key"];
+            // if (apiKey !== process.env.STAFF_API_KEY) { res.statusCode = 403; return res.end(); }
+            
+            const login = decodeURIComponent(staffBlacklistMatch[1]);
+            try {
+              const data = await probe(login);
+              // Extract the logins of 'tight' peers to be blacklisted
+              const blacklist = data.pairs
+                .filter(p => p.tier === "tight")
+                .map(p => p.peer);
+              
+              res.setHeader("Content-Type", "application/json");
+              res.end(JSON.stringify({
+                 target: login,
+                 reason: "Highly concentrated evaluations (tight tier)",
+                 blacklist
+              }));
+            } catch (err) {
+              res.statusCode = 500;
+              res.end(JSON.stringify({ error: String(err) }));
+            }
+            return;
+          }
+
+          // Protect frontend API routes
+          if (req.url?.startsWith("/api/") && !req.url.startsWith("/api/auth/")) {
+            const cookies = req.headers.cookie || "";
+            if (!cookies.includes("evalchains_session=")) {
+              res.statusCode = 401;
+              res.end(JSON.stringify({ error: "Unauthorized" }));
+              return;
+            }
+          }
+
           // /api/search/<query> — type-ahead user search for the dropdown
           const searchMatch = req.url?.match(/^\/api\/search\/([^?]+)(\?.*)?$/);
           if (searchMatch) {

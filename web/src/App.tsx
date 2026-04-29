@@ -39,14 +39,40 @@ type Data = {
 
 const TIERS: Tier[] = ["tight", "reciprocal", "lopsided", "normal"];
 
+const MOCK_LOGINS = [
+  "bsaeed", "jdoe", "asmith", "bwilson", "cclark", "ddavis", 
+  "emartin", "fwhite", "ghall", "hlee", "iking", 
+  "jwright", "kscott", "lgreen", "mbaker", "nadams",
+  "onelson", "pcarter", "qmitchell", "rperez"
+];
+
+const MOCK_DATA: Data = {
+  subject: { login: "bsaeed", displayName: "Bilal Saeed", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" },
+  generatedAt: new Date().toISOString(),
+  stats: {
+    totalRecv: 142, totalGiven: 138, uniqueRecv: 52, uniqueGiven: 48, overlap: 22,
+    tiers: { tight: 4, reciprocal: 6, lopsided: 10, normal: 30 }
+  },
+  pairs: [
+    ...Array.from({ length: 4 }).map((_, i) => ({ peer: MOCK_LOGINS[i], displayName: MOCK_LOGINS[i], imageUrl: `https://i.pravatar.cc/150?u=${MOCK_LOGINS[i]}`, received: 5, given: 5, reciprocal: 5, max: 5, total: 10, tier: "tight" as Tier })),
+    ...Array.from({ length: 6 }).map((_, i) => ({ peer: MOCK_LOGINS[i+4], displayName: MOCK_LOGINS[i+4], imageUrl: `https://i.pravatar.cc/150?u=${MOCK_LOGINS[i+4]}`, received: 3, given: 3, reciprocal: 3, max: 3, total: 6, tier: "reciprocal" as Tier })),
+    ...Array.from({ length: 10 }).map((_, i) => ({ peer: MOCK_LOGINS[i+10], displayName: MOCK_LOGINS[i+10], imageUrl: `https://i.pravatar.cc/150?u=${MOCK_LOGINS[i+10]}`, received: 4, given: 1, reciprocal: 1, max: 4, total: 5, tier: "lopsided" as Tier })),
+    ...Array.from({ length: 30 }).map((_, i) => ({ peer: `student${i}`, displayName: `student${i}`, imageUrl: `https://i.pravatar.cc/150?u=student${i}`, received: 1, given: 1, reciprocal: 1, max: 1, total: 2, tier: "normal" as Tier }))
+  ]
+};
+
 export default function App() {
-  const [login, setLogin] = useState("bsaeed");
-  const [input, setInput] = useState("bsaeed");
+  const [user, setUser] = useState<{ login: string; imageUrl: string | null } | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [login, setLogin] = useState("");
+  const [input, setInput] = useState("");
   const [data, setData] = useState<Data | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<Pair | null>(null);
   const [hidden, setHidden] = useState<Set<Tier>>(new Set());
   const [loading, setLoading] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const userProfileRef = useRef<HTMLDivElement>(null);
   const [results, setResults] = useState<
     Array<{ login: string; displayName: string; imageUrl: string | null }>
   >([]);
@@ -57,9 +83,24 @@ export default function App() {
   const searchTimer = useRef<number | null>(null);
 
   useEffect(() => {
+    fetch("/api/auth/me")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((u) => {
+        setUser(u);
+        setAuthLoading(false);
+        if (u) {
+          setLogin(u.login);
+          setInput(u.login);
+        }
+      })
+      .catch(() => setAuthLoading(false));
+
     const onDocClick = (e: MouseEvent) => {
       if (searchFormRef.current && !searchFormRef.current.contains(e.target as Node)) {
         setShowResults(false);
+      }
+      if (userProfileRef.current && !userProfileRef.current.contains(e.target as Node)) {
+        setShowUserMenu(false);
       }
     };
     document.addEventListener("mousedown", onDocClick);
@@ -104,8 +145,16 @@ export default function App() {
   useEffect(() => {
     let cancelled = false;
     setError(null);
-    setData(null);
     setSelected(null);
+    
+    if (!user && !authLoading) {
+      setData(MOCK_DATA);
+      setLoading(false);
+      return;
+    }
+
+    if (!user || !login) return;
+
     setLoading(true);
     fetch(`/api/probe/${encodeURIComponent(login)}`)
       .then(async (r) => {
@@ -125,15 +174,13 @@ export default function App() {
     return () => {
       cancelled = true;
     };
-  }, [login]);
+  }, [login, user, authLoading]);
 
   useEffect(() => {
     if (!data || !graphRef.current) return;
     const subject = data.subject;
-    // Hide peers with no avatar — these are team/bot accounts (e.g. 3b3-*) that
-    // the 42 user lookup can't resolve, and they just pollute the map with edges
-    // to non-humans.
-    const visiblePairs = data.pairs.filter((p) => p.imageUrl !== null);
+    // For real data, hide peers with no avatar (bots). For mock data, show them.
+    const visiblePairs = data === MOCK_DATA ? data.pairs : data.pairs.filter((p) => p.imageUrl !== null);
     const maxSize = Math.max(...visiblePairs.map((p) => p.max), 1);
 
     const elements: ElementDefinition[] = [
@@ -350,11 +397,12 @@ export default function App() {
             <line x1="7.6" y1="11" x2="16.2" y2="7.4" stroke="#ffffff" strokeOpacity="0.35" strokeWidth="1" />
             <line x1="7.6" y1="13" x2="17" y2="16.5" stroke="#ffffff" strokeOpacity="0.35" strokeWidth="1" />
           </svg>
-          <h1>evalchain</h1>
+          <h1>evalchains</h1>
         </div>
         <form
           ref={searchFormRef}
           className="search"
+          style={{ opacity: !user ? 0.5 : 1, pointerEvents: !user ? "none" : "auto" }}
           onSubmit={(e) => {
             e.preventDefault();
             const v = input.trim();
@@ -377,6 +425,7 @@ export default function App() {
             placeholder="search 42 login…"
             spellCheck={false}
             autoComplete="off"
+            disabled={!user}
           />
           {showResults && results.length > 0 && (
             <div className="search-dropdown">
@@ -404,12 +453,76 @@ export default function App() {
             </div>
           )}
         </form>
-        <div className="header-spacer" />
+        <div className="header-spacer">
+          <div 
+            className="user-profile"
+            ref={userProfileRef}
+            onClick={() => user && setShowUserMenu(!showUserMenu)}
+            style={{ opacity: !user ? 0.5 : 1, cursor: !user ? "default" : "pointer" }}
+          >
+            {user?.imageUrl ? (
+              <img className="avatar" src={user.imageUrl} alt={user.login} />
+            ) : (
+              <div className="avatar fallback">{user ? user.login.slice(0, 2) : "??"}</div>
+            )}
+            <span className="user-login">{user ? user.login : "Guest"}</span>
+            {user && (
+              <svg className="chevron" viewBox="0 0 16 16" aria-hidden="true" style={{ width: 12, height: 12, color: "#666c7c" }}>
+                 <path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
+            
+            {showUserMenu && user && (
+              <div className="user-dropdown">
+                <a href="/api/auth/logout" className="logout-btn">
+                  Logout
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
       </header>
 
-      <div className="graph" ref={graphRef} />
+      <div className="graph" ref={graphRef} style={{ opacity: !user && !authLoading ? 0.75 : 1, transition: "opacity 800ms ease", pointerEvents: !user && !authLoading ? "none" : "auto" }} />
 
-      {loading && (
+      {!user && !authLoading && (
+        <div className="landing-overlay">
+          <div className="landing-hero">
+            <svg className="hero-mark" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="5.5" cy="12" r="2.6" fill="none" stroke="#ffffff" strokeWidth="1.3" />
+              <circle cx="17.5" cy="6.5" r="2.1" fill="#ff3b68" stroke="none" />
+              <circle cx="18.5" cy="17.5" r="2.1" fill="#4ac9ff" stroke="none" />
+              <line x1="7.6" y1="11" x2="16.2" y2="7.4" stroke="#ffffff" strokeOpacity="0.35" strokeWidth="1" />
+              <line x1="7.6" y1="13" x2="17" y2="16.5" stroke="#ffffff" strokeOpacity="0.35" strokeWidth="1" />
+            </svg>
+            <h1 className="hero-title">evalchains</h1>
+            <p className="hero-subtitle">
+              The evaluation-pattern visualizer for the 42 Network.
+            </p>
+            
+            <div className="hero-features">
+              <div className="hero-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span>Search any 42 login to build an interactive peer map.</span>
+              </div>
+              <div className="hero-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+                <span>Analyze clustered and reciprocal evaluations instantly.</span>
+              </div>
+              <div className="hero-feature">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                <span>Break down complex relationships into readable tiers.</span>
+              </div>
+            </div>
+            
+            <a href="/api/auth/login" className="hero-login-btn">
+              Authenticate with 42
+            </a>
+          </div>
+        </div>
+      )}
+
+      {loading && user && (
         <div className="loading">
           <div className="spinner" />
           <div className="loading-title">
