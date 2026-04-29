@@ -498,6 +498,17 @@ export default function App() {
             </div>
           </div>
           <div className="tier-badge">{selected.tier}</div>
+          <button
+            type="button"
+            className="open-map-btn"
+            onClick={() => {
+              setInput(selected.peer);
+              setLogin(selected.peer);
+              setSelected(null);
+            }}
+          >
+            open @{selected.peer}&rsquo;s map →
+          </button>
           <div className="counts">
             <div>
               <span className="muted">they evaluated you</span> <b>{selected.received}</b>

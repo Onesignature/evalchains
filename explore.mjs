@@ -18,6 +18,11 @@ const API = "https://api.intra.42.fr";
 const PAGE_SIZE = 100;
 // 42 API limit: 2 req/sec per app. 600ms between pages keeps us safely under.
 const PAGE_DELAY_MS = 600;
+// Widen the location fetch window: a campus session can start hours before an
+// eval and still be active during it, so we pull anything that began up to 14h
+// before the earliest eval, and add a small cushion after the latest.
+const LOC_BUFFER_BEFORE_MS = 14 * 3600 * 1000;
+const LOC_BUFFER_AFTER_MS = 1 * 3600 * 1000;
 const JSON_OUT = `web/public/${login}.json`;
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -52,6 +57,77 @@ async function fetchAllPages(token, path, label) {
   return all;
 }
 
+async function fetchLocationsInWindow(token, login, sinceISO, untilISO) {
+  const all = [];
+  const range = `range[begin_at]=${encodeURIComponent(`${sinceISO},${untilISO}`)}`;
+  for (let page = 1; ; page++) {
+    const url = `${API}/v2/users/${login}/locations?${range}&sort=id&page[size]=${PAGE_SIZE}&page[number]=${page}`;
+    const r = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+    if (!r.ok) {
+      console.error(`  [loc:${login}] p${page} ${r.status} — skipping remaining pages for this user`);
+      break;
+    }
+    const batch = await r.json();
+    all.push(...batch);
+    if (batch.length < PAGE_SIZE) break;
+    await sleep(PAGE_DELAY_MS);
+  }
+  return all;
+}
+
+function correctorEvalWindows(received, selfLogin) {
+  const windows = new Map();
+  for (const e of received) {
+    const c = e.corrector?.login;
+    if (!c || c === selfLogin || !e.begin_at) continue;
+    const begin = new Date(e.begin_at).getTime();
+    const filled = e.filled_at ? new Date(e.filled_at).getTime() : begin + 3600 * 1000;
+    const w = windows.get(c);
+    if (!w) windows.set(c, { min: begin, max: filled });
+    else {
+      if (begin < w.min) w.min = begin;
+      if (filled > w.max) w.max = filled;
+    }
+  }
+  return windows;
+}
+
+async function fetchAllCorrectorLocations(token, received, selfLogin) {
+  const windows = correctorEvalWindows(received, selfLogin);
+  const out = new Map();
+  let i = 0;
+  for (const [corrector, w] of windows) {
+    i++;
+    const since = new Date(w.min - LOC_BUFFER_BEFORE_MS).toISOString();
+    const until = new Date(w.max + LOC_BUFFER_AFTER_MS).toISOString();
+    const locs = await fetchLocationsInWindow(token, corrector, since, until);
+    out.set(corrector, locs);
+    console.error(`  [loc] ${i}/${windows.size} ${corrector}: ${locs.length} sessions`);
+    if (i < windows.size) await sleep(PAGE_DELAY_MS);
+  }
+  return out;
+}
+
+function correctorWasOnCampus(ev, locations) {
+  if (!ev.filled_at || !ev.begin_at) return null;
+  const evBegin = new Date(ev.begin_at).getTime();
+  const evEnd = new Date(ev.filled_at).getTime();
+  for (const loc of locations) {
+    const locBegin = new Date(loc.begin_at).getTime();
+    const locEnd = loc.end_at ? new Date(loc.end_at).getTime() : Date.now();
+    if (locBegin <= evEnd && locEnd >= evBegin) return true;
+  }
+  return false;
+}
+
+function annotateOnCampus(received, locationsByCorrector) {
+  for (const e of received) {
+    const c = e.corrector?.login;
+    const locs = c ? locationsByCorrector.get(c) : null;
+    e.correctorOnCampus = locs ? correctorWasOnCampus(e, locs) : null;
+  }
+}
+
 async function fetchUsersByLogin(token, logins) {
   const out = new Map();
   const BATCH = 80;
@@ -74,10 +150,19 @@ async function fetchUsersByLogin(token, logins) {
 function buildPairs(received, given, selfLogin) {
   const recvCount = new Map();
   const givenCount = new Map();
+  const offCampusCount = new Map(); // corrector → # received evals where they were OFF campus
+  const checkedCount = new Map(); // corrector → # received evals we could actually verify
 
   for (const e of received) {
     const c = e.corrector?.login;
-    if (c && c !== selfLogin) recvCount.set(c, (recvCount.get(c) ?? 0) + 1);
+    if (!c || c === selfLogin) continue;
+    recvCount.set(c, (recvCount.get(c) ?? 0) + 1);
+    if (e.correctorOnCampus === true || e.correctorOnCampus === false) {
+      checkedCount.set(c, (checkedCount.get(c) ?? 0) + 1);
+      if (e.correctorOnCampus === false) {
+        offCampusCount.set(c, (offCampusCount.get(c) ?? 0) + 1);
+      }
+    }
   }
   for (const e of given) {
     for (const t of e.correcteds ?? []) {
@@ -91,7 +176,16 @@ function buildPairs(received, given, selfLogin) {
   for (const peer of peers) {
     const r = recvCount.get(peer) ?? 0;
     const g = givenCount.get(peer) ?? 0;
-    pairs.push({ peer, received: r, given: g, reciprocal: Math.min(r, g), max: Math.max(r, g), total: r + g });
+    pairs.push({
+      peer,
+      received: r,
+      given: g,
+      reciprocal: Math.min(r, g),
+      max: Math.max(r, g),
+      total: r + g,
+      offCampusReceived: offCampusCount.get(peer) ?? 0,
+      checkedReceived: checkedCount.get(peer) ?? 0,
+    });
   }
   return pairs;
 }
@@ -127,11 +221,12 @@ function printTable(rows, title) {
     return;
   }
   console.log(`\n${title}`);
-  console.log(`  ${"peer".padEnd(18)} ${"recv".padStart(5)} ${"given".padStart(6)} ${"recip".padStart(6)} ${"max".padStart(4)} ${"tier".padStart(11)}`);
-  console.log(`  ${"-".repeat(18)} ${"-".repeat(5)} ${"-".repeat(6)} ${"-".repeat(6)} ${"-".repeat(4)} ${"-".repeat(11)}`);
+  console.log(`  ${"peer".padEnd(18)} ${"recv".padStart(5)} ${"given".padStart(6)} ${"recip".padStart(6)} ${"max".padStart(4)} ${"off/chk".padStart(8)} ${"tier".padStart(11)}`);
+  console.log(`  ${"-".repeat(18)} ${"-".repeat(5)} ${"-".repeat(6)} ${"-".repeat(6)} ${"-".repeat(4)} ${"-".repeat(8)} ${"-".repeat(11)}`);
   for (const p of rows) {
+    const off = `${p.offCampusReceived}/${p.checkedReceived}`;
     console.log(
-      `  ${p.peer.padEnd(18)} ${String(p.received).padStart(5)} ${String(p.given).padStart(6)} ${String(p.reciprocal).padStart(6)} ${String(p.max).padStart(4)} ${p.tier.padStart(11)}`,
+      `  ${p.peer.padEnd(18)} ${String(p.received).padStart(5)} ${String(p.given).padStart(6)} ${String(p.reciprocal).padStart(6)} ${String(p.max).padStart(4)} ${off.padStart(8)} ${p.tier.padStart(11)}`,
     );
   }
 }
@@ -145,11 +240,17 @@ function summarize(pairs, received, given, selfLogin) {
   const tiers = { tight: 0, reciprocal: 0, lopsided: 0, normal: 0 };
   for (const p of pairs) tiers[p.tier]++;
 
+  const offCampusEvals = received.filter((e) => e.correctorOnCampus === false).length;
+  const checkedEvals = received.filter((e) => e.correctorOnCampus === true || e.correctorOnCampus === false).length;
+  const offCampusPeers = pairs.filter((p) => p.offCampusReceived > 0).length;
+  const locationStats = { offCampusEvals, checkedEvals, offCampusPeers };
+
   console.log(`\n== ${selfLogin} — evaluation map ==`);
-  console.log(`Received : ${totalRecv} evals from ${uniqueRecv} unique peers`);
-  console.log(`Given    : ${totalGiven} evals to ${uniqueGiven} unique peers`);
-  console.log(`Overlap  : ${overlap} peers evaluated in both directions`);
-  console.log(`Tiers    : tight=${tiers.tight}  reciprocal=${tiers.reciprocal}  lopsided=${tiers.lopsided}  normal=${tiers.normal}`);
+  console.log(`Received  : ${totalRecv} evals from ${uniqueRecv} unique peers`);
+  console.log(`Given     : ${totalGiven} evals to ${uniqueGiven} unique peers`);
+  console.log(`Overlap   : ${overlap} peers evaluated in both directions`);
+  console.log(`Tiers     : tight=${tiers.tight}  reciprocal=${tiers.reciprocal}  lopsided=${tiers.lopsided}  normal=${tiers.normal}`);
+  console.log(`Off-campus: ${offCampusEvals}/${checkedEvals} received evals had corrector off-campus (across ${offCampusPeers} peers)`);
 
   const flagged = pairs
     .filter((p) => p.tier !== "normal")
@@ -159,7 +260,7 @@ function summarize(pairs, received, given, selfLogin) {
     });
   printTable(flagged.slice(0, 20), "Flagged pairs (any non-normal tier):");
 
-  return { totalRecv, totalGiven, uniqueRecv, uniqueGiven, overlap, tiers };
+  return { totalRecv, totalGiven, uniqueRecv, uniqueGiven, overlap, tiers, location: locationStats };
 }
 
 function exportJSON(pairs, stats, subjectUser, selfLogin, outPath) {
@@ -187,6 +288,9 @@ const [received, given] = await Promise.all([
   fetchAllPages(token, `/v2/users/${login}/scale_teams/as_corrected`, "received"),
   fetchAllPages(token, `/v2/users/${login}/scale_teams/as_corrector`, "given"),
 ]);
+console.error(`\nfetching corrector campus locations to check on-campus during each eval...`);
+const locationsByCorrector = await fetchAllCorrectorLocations(token, received, login);
+annotateOnCampus(received, locationsByCorrector);
 const pairs = buildPairs(received, given, login);
 console.error(`resolving ${pairs.length + 1} user profiles for avatars...`);
 const users = await fetchUsersByLogin(token, [login, ...pairs.map((p) => p.peer)]);

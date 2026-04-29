@@ -404,6 +404,28 @@
 .detail.tier-reciprocal .tier-badge { background: rgba(255, 165, 68, 0.18);  border-color: rgba(255, 165, 68, 0.45);  color: #ffc88a; }
 .detail.tier-lopsided   .tier-badge { background: rgba(74, 201, 255, 0.18); border-color: rgba(74, 201, 255, 0.45); color: #9bddff; }
 
+.open-map-btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #f0f0f5;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  letter-spacing: -0.005em;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+.open-map-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
 .counts {
   display: flex;
   flex-direction: column;
