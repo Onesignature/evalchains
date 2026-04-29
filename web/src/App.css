@@ -10,6 +10,7 @@
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   letter-spacing: -0.005em;
   overflow: hidden;
+  height: 100dvh;
 }
 
 /* === Header ================================================= */
@@ -637,4 +638,83 @@
   height: 32px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* === Responsive / Mobile ===================================== */
+@media (max-width: 768px) {
+  .app header {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: 
+      "brand user"
+      "search search";
+    gap: 12px;
+    top: 16px;
+    left: 16px;
+    right: 16px;
+  }
+  
+  .brand { grid-area: brand; }
+  .user-profile { grid-area: user; }
+  
+  .search {
+    grid-area: search;
+    width: 100%;
+  }
+
+  .search input { width: 100%; }
+  .search input:focus { width: 100%; }
+  .search-dropdown { width: 100%; }
+
+  .landing-hero {
+    max-width: calc(100% - 32px);
+    margin: 0 16px;
+    padding: 32px 24px;
+    border-radius: 24px;
+  }
+
+  .hero-title { font-size: 26px; }
+  .hero-subtitle { font-size: 14px; }
+  .hero-features { gap: 8px; margin-bottom: 24px; }
+  .hero-feature { padding: 12px 16px; }
+
+  .subject-card {
+    top: auto;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    min-width: 0;
+    max-width: none;
+    padding: 12px;
+  }
+
+  .detail {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    min-width: 0;
+    max-width: none;
+    z-index: 20; /* Overlaps subject card */
+    padding: 12px;
+  }
+
+  .legend {
+    bottom: auto;
+    top: 110px;
+    right: 16px;
+    flex-direction: column;
+    align-items: flex-end;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .legend-item {
+    background: rgba(14, 16, 28, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    margin-bottom: 4px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
 }
