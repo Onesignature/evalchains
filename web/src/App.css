@@ -640,6 +640,40 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #c0c6d4;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 150ms ease;
+}
+.github-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.hero-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #9aa5b4;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  margin-top: 24px;
+  transition: color 150ms ease;
+}
+.hero-secondary-btn:hover {
+  color: #ffffff;
+}
+
 /* === Responsive / Mobile ===================================== */
 @media (max-width: 768px) {
   .app header {
@@ -664,6 +698,9 @@
   .search input { width: 100%; }
   .search input:focus { width: 100%; }
   .search-dropdown { width: 100%; }
+  
+  .hide-mobile { display: none; }
+  .github-link { padding: 8px; }
 
   .landing-hero {
     max-width: calc(100% - 32px);
