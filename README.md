@@ -67,6 +67,25 @@ First probe for a given login takes 30–60 seconds (paginated API calls, rate-l
   node --env-file=.env explore.mjs <login>
   ```
 
+## Staff / Matchmaking API
+
+Evalchains provides a headless, programmatic endpoint specifically designed for Bocal or automated matchmaking systems to break up evaluation rings.
+
+**Endpoint:** `GET /api/staff/blacklist/<login>`
+
+This endpoint skips the UI and returns a clean array of peers who are in the "tight" tier (meaning they evaluate the target user suspiciously often). 
+
+**Example Response:**
+```json
+{
+  "target": "bsaeed",
+  "reason": "Highly concentrated evaluations (tight tier)",
+  "blacklist": ["jdoe", "asmith"]
+}
+```
+
+**Integration:** Right before the 42 matchmaking system assigns an evaluator, it can query this endpoint and exclude anyone in the `blacklist` array from the pool of potential peers for that specific evaluation. *(Note: You can secure this endpoint with an `x-api-key` header in `server.mjs` for production use).*
+
 ## Status
 
 Ready for public or staff use! Access is now gated by a secure 42 OAuth flow, ensuring only authenticated 42 students can utilize the visualizer, while providing a headless Staff API for backend integrations.
