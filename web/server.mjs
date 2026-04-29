@@ -285,7 +285,7 @@ app.get("/api/probe/:login", async (req, res) => {
 // Serve static frontend files in production
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(join(__dirname, "dist")));
-  app.get("*", (req, res) => {
+  app.use((req, res) => {
     res.sendFile(join(__dirname, "dist", "index.html"));
   });
 }
