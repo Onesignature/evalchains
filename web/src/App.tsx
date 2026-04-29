@@ -600,11 +600,64 @@ export default function App() {
             className="export-btn"
             onClick={() => {
               if (!cyRef.current) return;
-              const b64 = cyRef.current.png({ full: true, scale: 2, bg: '#0a0c14' });
-              const a = document.createElement("a");
-              a.href = b64;
-              a.download = `${data.subject.login}_evalchains.png`;
-              a.click();
+              const b64 = cyRef.current.png({ full: true, scale: 2, bg: 'transparent' });
+              const img = new Image();
+              img.onload = () => {
+                const canvas = document.createElement("canvas");
+                const padTop = 180;
+                const padBottom = 100;
+                canvas.width = Math.max(img.width + 100, 1000);
+                canvas.height = img.height + padTop + padBottom;
+                const ctx = canvas.getContext("2d");
+                if (!ctx) return;
+                
+                // Draw dark background
+                ctx.fillStyle = "#07080f";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw graph
+                const dx = (canvas.width - img.width) / 2;
+                ctx.drawImage(img, dx, padTop);
+                
+                // Draw Brand Logo
+                ctx.save();
+                ctx.translate(canvas.width / 2 - 140, 80);
+                ctx.scale(2.2, 2.2);
+                ctx.beginPath(); ctx.moveTo(-10, -2); ctx.lineTo(12, -10);
+                ctx.moveTo(-10, 2); ctx.lineTo(14, 10);
+                ctx.strokeStyle = "rgba(255,255,255,0.35)"; ctx.lineWidth = 2; ctx.stroke();
+                ctx.beginPath(); ctx.arc(-13, 0, 6, 0, Math.PI*2);
+                ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 2.6; ctx.stroke();
+                ctx.beginPath(); ctx.arc(11, -11, 4.2, 0, Math.PI*2);
+                ctx.fillStyle = "#ff3b68"; ctx.fill();
+                ctx.beginPath(); ctx.arc(13, 11, 4.2, 0, Math.PI*2);
+                ctx.fillStyle = "#4ac9ff"; ctx.fill();
+                ctx.restore();
+
+                // Draw Brand Text
+                ctx.fillStyle = "#ffffff";
+                ctx.font = "bold 52px Inter, system-ui, sans-serif";
+                ctx.textAlign = "left";
+                ctx.fillText("evalchains", canvas.width / 2 - 80, 96);
+                
+                // Draw Subtitle
+                ctx.fillStyle = "#9aa5b4";
+                ctx.font = "500 28px Inter, system-ui, sans-serif";
+                ctx.textAlign = "center";
+                ctx.fillText(`@${data.subject.login} — Evaluation Network`, canvas.width / 2, 148);
+                
+                // Draw Footer
+                ctx.fillStyle = "#5a6272";
+                ctx.font = "22px Inter, system-ui, sans-serif";
+                ctx.fillText("generated at evalchains.com", canvas.width / 2, canvas.height - 40);
+                
+                const finalB64 = canvas.toDataURL("image/png");
+                const a = document.createElement("a");
+                a.href = finalB64;
+                a.download = `${data.subject.login}_evalchains.png`;
+                a.click();
+              };
+              img.src = b64;
             }}
           >
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
