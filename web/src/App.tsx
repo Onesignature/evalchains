@@ -620,8 +620,9 @@ export default function App() {
                 ctx.drawImage(img, dx, padTop);
                 
                 // Draw Brand Logo
+                const leftPad = 80;
                 ctx.save();
-                ctx.translate(canvas.width / 2 - 140, 80);
+                ctx.translate(leftPad + 30, 80);
                 ctx.scale(2.2, 2.2);
                 ctx.beginPath(); ctx.moveTo(-10, -2); ctx.lineTo(12, -10);
                 ctx.moveTo(-10, 2); ctx.lineTo(14, 10);
@@ -638,18 +639,19 @@ export default function App() {
                 ctx.fillStyle = "#ffffff";
                 ctx.font = "bold 52px Inter, system-ui, sans-serif";
                 ctx.textAlign = "left";
-                ctx.fillText("evalchains", canvas.width / 2 - 80, 96);
+                ctx.fillText("evalchains", leftPad + 76, 96);
                 
                 // Draw Subtitle
                 ctx.fillStyle = "#9aa5b4";
                 ctx.font = "500 28px Inter, system-ui, sans-serif";
-                ctx.textAlign = "center";
-                ctx.fillText(`@${data.subject.login} — Evaluation Network`, canvas.width / 2, 148);
+                ctx.textAlign = "left";
+                ctx.fillText(`@${data.subject.login} — Evaluation Network`, leftPad, 154);
                 
                 // Draw Footer
                 ctx.fillStyle = "#5a6272";
                 ctx.font = "22px Inter, system-ui, sans-serif";
-                ctx.fillText("generated at evalchains.com", canvas.width / 2, canvas.height - 40);
+                ctx.textAlign = "left";
+                ctx.fillText("generated at evalchains.com", leftPad, canvas.height - 40);
                 
                 const finalB64 = canvas.toDataURL("image/png");
                 const a = document.createElement("a");
